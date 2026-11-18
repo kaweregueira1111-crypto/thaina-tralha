@@ -223,7 +223,7 @@
   <div class="gcard">
     <div class="gpill"><i></i>Verificação rápida</div>
     <div class="gid">
-      <div class="gav"><img id="gAv" alt="THAINA TRALHA"></div>
+     <div class="gav"><img id="gAv" src="perfil.jpg" alt="THAINA TRALHA" onerror="this.outerHTML='<b style=\'display:grid;place-items:center;height:100%;color:#ffd23f;font-size:16px\'>TT</b>'"></div>
       <div>
         <div class="gname"><b>THAINA TRALHA</b>
           <svg viewBox="0 0 24 24" aria-label="Verificado"><circle cx="12" cy="12" r="10" fill="#9d4edd"/><path d="M8 12.2l2.7 2.7L16.2 9" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -392,6 +392,38 @@ requestAnimationFrame(frame);
 build();addEventListener('resize',function(){build();if(still)frame(0)});
 still?frame(0):requestAnimationFrame(frame);
 })();
+  (function(){
+    var g=document.getElementById('gate'),b=document.getElementById('hold'),bio=document.getElementById('bio'),sbar=document.getElementById('sbar'),
+        pr=b.querySelector('.prog'),bars=g.querySelectorAll('.bars i'),p=0,on=false,last=0,raf=0,DUR=1100;
+    function paint(){
+      pr.style.strokeDashoffset=100-p*100;
+      pr.style.opacity=p>0.004?1:0;
+      for(var i=0;i<3;i++)bars[i].classList.toggle('on',p>=(i+1)/3-0.01);
+    }
+    function enter(){
+      if(navigator.vibrate)try{navigator.vibrate(25)}catch(e){}
+      g.classList.add('out');
+      setTimeout(function(){g.hidden=true;bio.hidden=false;if(sbar)sbar.hidden=false;bio.classList.add('in');window.scrollTo(0,0)},400);
+    }
+    function tick(t){
+      var dt=Math.min(t-last,50);last=t;
+      p=Math.max(0,Math.min(1,p+(on?dt/DUR:-dt/350)));paint();
+      if(p>=1){raf=0;enter();return}
+      raf=(on||p>0)?requestAnimationFrame(tick):0;
+    }
+    function hold(v){
+      if(g.classList.contains('out'))return;
+      on=v;b.classList.toggle('active',v);
+      if(!raf){last=performance.now();raf=requestAnimationFrame(tick)}
+    }
+    b.onpointerdown=function(e){e.preventDefault();hold(true)};
+    b.onpointerup=b.onpointercancel=b.onpointerleave=function(){hold(false)};
+    b.ontouchstart=function(e){e.preventDefault();hold(true)};
+    b.ontouchend=b.ontouchcancel=function(){hold(false)};
+    b.onmousedown=function(e){e.preventDefault();hold(true)};
+    window.onmouseup=function(){if(on)hold(false)};
+    b.oncontextmenu=function(e){e.preventDefault()};
+  })();
 </script>
 </body>
 </html>
