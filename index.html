@@ -134,9 +134,10 @@
   .game-img .fallback-icon{font-size:32px}
   .game-name{margin-top:7px;font-size:11px;font-weight:700;text-align:center;line-height:1.2;color:#f8f0ff;height:26px;display:flex;align-items:center;justify-content:center}
   .rtp-badge{margin-top:5px;width:100%;padding:4px 4px;border-radius:999px;text-align:center;font-size:10.5px;font-weight:800;letter-spacing:.2px;color:#042b11;background:linear-gradient(180deg,#5eff96,#1ec95b);box-shadow:0 0 10px rgba(46,232,114,.35)}
+  .rtp-badge.low{color:#fff;background:radial-gradient(circle at 35% 30%,#ff9d8a,#e2352b 70%,#a81d16);box-shadow:0 0 10px rgba(240,70,50,.45)}
   .disclaimer{margin-top:26px;text-align:center;font-size:11px;color:rgba(255,255,255,.55)}
-  .sticky-bar{
-    position:fixed;bottom:0;left:0;right:0;z-index:20;
+ .sticky-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:20;
     background:rgba(16,4,36,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
     border-top:1.5px solid rgba(224,176,255,.32);
     padding:10px 16px calc(10px + env(safe-area-inset-bottom));
@@ -232,7 +233,7 @@
   function agendar(){
     var falta=SLOT-(Date.now()%SLOT)+500;
     setTimeout(function(){renderRTP();agendar()},falta);
-  }
+ }
   renderRTP();
   agendar();
   setInterval(renderRTP,60000);
