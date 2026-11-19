@@ -277,57 +277,59 @@
   }
   .plat-tag svg{width:12px;height:12px;stroke:currentColor}
 
-  /* Área da Logo Grande (sem cortes e ocupando destaque) */
+  /* Área da Logo Grande (100% transparente para PNG sem fundo flutuar) */
   .plat-brand{
     position:relative;z-index:1;display:flex;align-items:center;justify-content:center;
-    width:100%;min-height:92px;margin:4px 0 18px;padding:6px 10px;border-radius:16px;
-    background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.08);
-    box-sizing:border-box;
+    width:100%;min-height:92px;margin:4px 0 18px;padding:4px;
+    background:transparent;border:none;box-sizing:border-box;
   }
   .plat-logo{
-    width:100%;max-width:250px;height:86px;object-fit:contain;display:block;
-    border-radius:12px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));
+    width:100%;max-width:260px;height:90px;object-fit:contain;display:block;
+    filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));
   }
 
-  /* Botão JOGAR AGORA */
+  /* Botão JOGAR AGORA (Estilo Vidro Transparente igual ao Card) */
   .plat-btn{
     position:relative;z-index:1;display:flex;align-items:center;gap:12px;
     width:100%;padding:12px 14px;border-radius:18px;text-decoration:none;
-    background:linear-gradient(90deg,#FDE047 0%,#FB923C 52%,#EA580C 100%);
-    border:2px solid rgba(255,245,180,.65);
-    box-shadow:0 10px 24px rgba(234,88,12,.4),inset 0 2px 1px rgba(255,255,255,.55);
-    overflow:hidden;transition:transform .18s ease,box-shadow .18s ease;box-sizing:border-box;
+    background:rgba(255,255,255,.07);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1.5px solid rgba(255,255,255,.22);
+    box-shadow:0 10px 24px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.25);
+    overflow:hidden;transition:transform .18s ease,background .2s ease,border-color .2s ease;box-sizing:border-box;
   }
   /* Reflexo passando no botão */
   .plat-btn::after{
     content:"";position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%) 150% 0/300% 100% no-repeat;
+    background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.35) 50%,transparent 65%) 150% 0/300% 100% no-repeat;
     animation:platShine 3.4s ease-in-out infinite;
   }
   @keyframes platShine{0%{background-position:150% 0}55%,100%{background-position:-50% 0}}
+  .plat-btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.38)}
   .plat-btn:active{transform:translateY(2px)}
 
   /* Ícone Play esquerdo */
   .plat-play{
     width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;
-    background:#260d02;box-shadow:inset 0 2px 5px rgba(0,0,0,.6);
+    background:rgba(0,0,0,.28);border:1.5px solid rgba(255,255,255,.25);
+    box-shadow:inset 0 2px 5px rgba(0,0,0,.4);
   }
-  .plat-play svg{width:18px;height:18px;fill:#FDE047;margin-left:2px}
+  .plat-play svg{width:18px;height:18px;fill:#FFFFFF;margin-left:2px}
 
   /* Textos do botão */
   .plat-btn-txt{flex:1;min-width:0;text-align:left}
   .plat-btn-txt strong{
-    display:block;font-size:17px;font-weight:900;color:#180801;
-    letter-spacing:.2px;line-height:1.15;
+    display:block;font-size:17px;font-weight:900;color:#FFFFFF;
+    letter-spacing:.3px;line-height:1.15;text-shadow:0 2px 6px rgba(0,0,0,.35);
   }
   .plat-btn-txt small{
-    display:block;font-size:11.5px;font-weight:600;color:rgba(24,8,1,.82);margin-top:2px;
+    display:block;font-size:11.5px;font-weight:500;color:rgba(255,255,255,.78);margin-top:2px;
   }
 
   /* Setinha direita */
   .plat-arrow{
     width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;
-    border:1.5px solid rgba(24,8,1,.25);color:#180801;
+    background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.22);color:#FFFFFF;
   }
   .plat-arrow svg{width:16px;height:16px;stroke:currentColor}
 </style>
@@ -341,6 +343,28 @@
       </svg>
     </span>
   </div>
+
+  <div class="plat-brand">
+    <!-- AQUI VAI A FOTO DA PLATAFORMA EM PNG SEM FUNDO -->
+    <img class="plat-logo" src="plataforma.png" alt="Logo da Plataforma">
+  </div>
+
+  <!-- AQUI VOCÊ COLOCA O LINK DE CADASTRO DA PLATAFORMA -->
+  <a class="plat-btn" href="COLOQUE_O_LINK_DA_PLATAFORMA_AQUI" target="_blank" rel="noopener">
+    <span class="plat-play" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    </span>
+    <span class="plat-btn-txt">
+      <strong>JOGAR AGORA</strong>
+      <small>Clique aqui para acessar a plataforma</small>
+    </span>
+    <span class="plat-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 17L17 7M7 7h10v10"/>
+      </svg>
+    </span>
+  </a>
+</div>
   <div class="plat-brand">
     <!-- AQUI VAI A FOTO DA PLATAFORMA (aparece inteira e grande no centro) -->
     <img class="plat-logo" src="plataforma.png" alt="Logo da Plataforma">
@@ -362,6 +386,7 @@
     </span>
   </a>
 </div>
+
   <div class="label-row"><span class="label">Link da plataforma ▾</span></div>
   <div class="platform">
     <div class="thumb"><div class="thumb-box"><img src="rio222.jpg" alt="RIO222" onerror="this.parentElement.innerHTML='RIO222'"></div></div>
