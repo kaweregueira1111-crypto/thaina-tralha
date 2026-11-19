@@ -638,5 +638,90 @@ still?frame(0):requestAnimationFrame(frame);
     b.oncontextmenu=function(e){e.preventDefault()};
   })();
 </script>
+  <style>
+  /* ===== BOTÃO DE DÚVIDAS CANTO SUPERIOR DIREITO ===== */
+  .spx-help-btn{
+    position:fixed;top:16px;right:16px;z-index:9990;
+    width:38px;height:38px;border-radius:50%;cursor:pointer;
+    display:grid;place-items:center;color:#fff;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1.5px solid rgba(255,255,255,.22);
+    box-shadow:0 8px 20px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.25);
+    transition:transform .2s ease,background .2s ease,border-color .2s ease;
+  }
+  .spx-help-btn:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.45)}
+  .spx-help-btn:active{transform:scale(.92)}
+  .spx-help-btn svg{width:19px;height:19px;stroke:currentColor}
+
+  /* ===== JANELA DE DÚVIDAS (MODAL VIDRO) ===== */
+  .spx-help-bg{
+    position:fixed;inset:0;z-index:9999;padding:18px;
+    display:none;align-items:center;justify-content:center;
+    background:rgba(5,7,14,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    font-family:system-ui,-apple-system,sans-serif;
+  }
+  .spx-help-bg.open{display:flex;animation:spxFade .22s ease}
+  @keyframes spxFade{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+
+  .spx-help-card{
+    width:100%;max-width:380px;padding:20px 18px;border-radius:22px;color:#fff;
+    background:rgba(20,24,38,.92);
+    border:1.5px solid rgba(255,255,255,.18);
+    box-shadow:0 20px 45px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.18);
+  }
+  .spx-help-head{
+    display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;
+  }
+  .spx-help-head strong{font-size:16px;font-weight:800;letter-spacing:.2px}
+  .spx-help-close{
+    width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.08);color:#fff;font-size:16px;cursor:pointer;
+    display:grid;place-items:center;line-height:1;
+  }
+
+  /* Itens de perguntas */
+  .spx-faq-list{display:flex;flex-direction:column;gap:10px}
+  .spx-faq-item{
+    padding:12px 13px;border-radius:14px;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  }
+  .spx-faq-item strong{display:block;font-size:13px;font-weight:700;color:#fff;margin-bottom:4px}
+  .spx-faq-item p{margin:0;font-size:12px;line-height:1.45;color:rgba(255,255,255,.78)}
+</style>
+
+<!-- Ícone pequeno no canto superior direito -->
+<button class="spx-help-btn" type="button" aria-label="Tirar dúvidas" onclick="document.getElementById('spxHelpModal').classList.add('open')">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+    <line x1="12" y1="17" x2="12.01" y2="17"/>
+  </svg>
+</button>
+
+<!-- Janela com as respostas -->
+<div class="spx-help-bg" id="spxHelpModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="spx-help-card">
+    <div class="spx-help-head">
+      <strong>Dúvidas Frequentes</strong>
+      <button class="spx-help-close" type="button" aria-label="Fechar" onclick="document.getElementById('spxHelpModal').classList.remove('open')">✕</button>
+    </div>
+
+    <div class="spx-faq-list">
+      <div class="spx-faq-item">
+        <strong>1. Como faço para acessar a plataforma?</strong>
+        <p>Basta clicar no botão "Jogar Agora" no card oficial aqui da página para ser redirecionado com segurança.</p>
+      </div>
+      <div class="spx-faq-item">
+        <strong>2. Os saques e depósitos são via PIX?</strong>
+        <p>Sim! As plataformas indicadas operam com PIX rápido 24 horas por dia diretamente para a sua titularidade.</p>
+      </div>
+      <div class="spx-faq-item">
+        <strong>3. Como funcionam as porcentagens dos jogos?</strong>
+        <p>Os indicadores mostram o retorno teórico (RTP) oficial do provedor em tempo real para ajudar na sua escolha.</p>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
